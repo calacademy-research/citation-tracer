@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # Purpose: get all children nodes of the input paper, and the max child node
-# Install module pyalex: pip install pyalex
+# Install pyalex: pip install pyalex
 
 import pyalex
 from pyalex import Works, Authors, Sources, Institutions, Topics, Publishers, Funders
@@ -19,6 +19,10 @@ def get_children(alexid):
 
 # Get all children through the whole tree
 def get_all_descendants_list(root):
+    # Extract the OpenAlex ID from doi
+    work = Works()[f"https://doi.org/{root}"]
+    root = work["id"]
+    
     visited = []  # Tracks visited nodes
     next_nodes = [root]  # Start with the root node
     all_nodes_count = []
@@ -42,10 +46,12 @@ def get_all_descendants_list(root):
 
 
 # Set input paper
-mydoi='https://openalex.org/W4393928016'
+#doi='https://openalex.org/W4393928016'
+doi='10.1182/bloodadvances.2023012416'
+print('Input doi is: ', doi)
 
 # Get all children and their citations
-desc = get_all_descendants_list(mydoi)
+desc = get_all_descendants_list(doi)
 
 # Get the highest citation among all children
 desc_dict = dict(zip(desc[0], desc[1]))
