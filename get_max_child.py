@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # Purpose: get all children nodes of the input paper, and the max child node
+# Install module pyalex: pip install pyalex
 
 import pyalex
 from pyalex import Works, Authors, Sources, Institutions, Topics, Publishers, Funders
